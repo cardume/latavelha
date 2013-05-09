@@ -39,18 +39,18 @@
 						</section>
 					</div>
 					<div class="four columns omega offset-by-one">
-						<aside class="related-content">
-							<?php if($link) : ?>
-								<div class="links">
-									<h2><?php _e('Links', 'latavelha'); ?></h2>
-									<ul>
-										<li>
-											<h3><a href="<?php echo $link; ?>" rel="external" target="_blank"><?php _e('Accident report link', 'latavelha'); ?></a></h3>
-										</li>
-									</ul>
-								</div>
-							<?php endif; ?>
-						</aside>
+						<?php if($link) : ?>
+							<aside class="related-content">
+									<div class="links">
+										<h2><?php _e('Links', 'latavelha'); ?></h2>
+										<ul>
+											<li>
+												<h3><a href="<?php echo $link; ?>" rel="external" target="_blank"><?php _e('Accident report link', 'latavelha'); ?></a></h3>
+											</li>
+										</ul>
+									</div>
+							</aside>
+						<?php endif; ?>
 						<?php if(latavelha_get_accident_type()) : ?>
 							<a class="button dark" style="display:block;margin-bottom:30px;" href="<?php echo get_term_link(latavelha_get_accident_type(), 'accident-type'); ?>"><?php _e('View all accidents by', 'latavelha'); ?> <?php echo $type_name; ?></a>
 						<?php endif; ?>
