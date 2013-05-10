@@ -38,7 +38,7 @@ add_action('after_setup_theme', 'latavelha_setup');
 function latavelha_scripts() {
 	// styles
 	wp_enqueue_style('font-blackops', 'http://fonts.googleapis.com/css?family=Black+Ops+One');
-	wp_enqueue_style('main', get_stylesheet_directory_uri() . '/css/main.css', array('mappress-skeleton', 'font-opensans', 'font-blackops'), '0.0.1.1');
+	wp_enqueue_style('main', get_stylesheet_directory_uri() . '/css/main.css', array('mappress-skeleton', 'font-opensans', 'font-blackops'), '1.0');
 	wp_enqueue_style('isotope', get_stylesheet_directory_uri() . '/css/isotope.css', array('main'), '1.5.25');
 
 	//scripts

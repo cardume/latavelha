@@ -37,7 +37,7 @@
 				<h1>
 					<a href="<?php echo home_url('/'); ?>" title="<?php bloginfo('name'); ?>">
 						<?php bloginfo('name'); ?>
-						<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo2.png" class="scale-with-grid" />
+						<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo3.png" class="scale-with-grid" />
 					</a>
 				</h1>
 			</div>
