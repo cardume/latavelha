@@ -212,4 +212,9 @@ function latavelha_use_map_query() {
 }
 add_filter('mappress_use_map_query', 'latavelha_use_map_query');
 
+function latavelha_geocode_type() {
+	return 'latlng';
+}
+add_filter('mappress_geocode_type', 'latavelha_geocode_type');
+
 ?>
