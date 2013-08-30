@@ -36,7 +36,7 @@
 				<a class="icon info" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php _e('more', 'latavelha'); ?></a>
 				<?php if(latavelha_has_platform_location() && !is_single()) : ?>
 					<?php
-					$coords = mappress_get_marker_coordinates();
+					$coords = jeo_get_marker_coordinates();
 					$lon = $coords[0];
 					$lat = $coords[1];
 					$zoom = 10;

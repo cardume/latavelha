@@ -40,7 +40,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 .search-results #map .accidents,.search-results #map .platforms{display:block !important;}
 .post-type-archive-accident #map .accidents,.tax-accident-type #map .accidents{display:block !important;}
 .post-type-archive-accident #map .platforms,.tax-accident-type #map .platforms{display:none !important;}
-.single #map{height:350px;}.single #map .map-widgets,.single #map .map-legends{display:none !important;}
+.single #map{overflow:hidden;height:350px;}.single #map .map-widgets,.single #map .map-legends{display:none !important;}
 @-webkit-keyframes map-point-highlight{0%{margin-top:-2020px;margin-left:-2000px;-webkit-border-radius:2000px;-khtml-border-radius:2000px;-moz-border-radius:2000px;-o-border-radius:2000px;border-radius:2000px;border:1900px solid rgba(0, 0, 0, 0.6);} 100%{width:1900px;height:1900px;border:850px solid rgba(0, 0, 0, 0);}}.content-section{margin-bottom:40px;}.content-section h2{font-family:"Open Sans";font-weight:800;text-transform:lowercase;font-size:18px;line-height:22px;padding-bottom:10px;color:#333;}.content-section h2 a{color:#333;text-decoration:none;opacity:.3;}.content-section h2 a:hover{opacity:1;}
 .content-section h2 .sep{font-size:8px;line-height:16px;padding:0 5px;opacity:.3;}
 .content-section.archive h2,.content-section.search h2{text-transform:none;border:0;}

@@ -36,13 +36,16 @@ add_action('after_setup_theme', 'latavelha_setup');
  * Scripts and styles
  */
 function latavelha_scripts() {
+
+	wp_deregister_script('jeo-site');
+
 	// styles
 	wp_enqueue_style('font-blackops', 'http://fonts.googleapis.com/css?family=Black+Ops+One');
-	wp_enqueue_style('main', get_stylesheet_directory_uri() . '/css/main.css', array('mappress-skeleton', 'font-opensans', 'font-blackops'), '1.0');
+	wp_enqueue_style('main', get_stylesheet_directory_uri() . '/css/main.css', array('jeo-skeleton', 'font-opensans', 'font-blackops'), '1.0');
 	wp_enqueue_style('isotope', get_stylesheet_directory_uri() . '/css/isotope.css', array('main'), '1.5.25');
 
 	//scripts
-	wp_enqueue_script('latavelha', get_stylesheet_directory_uri() . '/js/latavelha.js', array('jquery'), '0.0.7');
+	wp_enqueue_script('latavelha', get_stylesheet_directory_uri() . '/js/latavelha.js', array('jquery'), '0.0.8');
 	wp_enqueue_script('isotope', get_stylesheet_directory_uri() . '/lib/jquery.isotope.min.js', array('jquery'), '1.5.25');
 	wp_enqueue_script('imagesloaded', get_stylesheet_directory_uri() . '/lib/jquery.imagesloaded.min.js', array('jquery'), '2.1.1');
 }
@@ -66,7 +69,7 @@ function latavelha_map($title = false, $single = true) {
 				<<?php echo $tag; ?> class="map-title"><?php echo $title; ?></<?php echo $tag; ?>>
 			<?php endif; ?>
 		</div></div>
-		<?php mappress_featured(true, true); ?>
+		<?php jeo_featured(true, true); ?>
 	</section>
 	<?php
 }
@@ -101,7 +104,7 @@ function latavelha_queries($query) {
 
 	return $query;
 }
-add_filter('mappress_marker_query', 'latavelha_queries');
+add_filter('jeo_marker_query', 'latavelha_queries');
 
 function latavelha_marker_extent($extent) {
 	if(is_post_type_archive(array('platform', 'accident')))
@@ -109,17 +112,19 @@ function latavelha_marker_extent($extent) {
 
 	return $extent;
 }
-add_filter('mappress_use_marker_extent', 'latavelha_marker_extent');
+add_filter('jeo_use_marker_extent', 'latavelha_marker_extent');
 
 // lata velha marker icons
-add_filter('mappress_marker_icon', 'latavelha_markers_icon');
+add_filter('jeo_marker_icon', 'latavelha_markers_icon');
 function latavelha_markers_icon($marker) {
 	global $post;
 	if(get_post_type() == 'platform') {
 		$marker = array(
 			'url' => get_stylesheet_directory_uri() . '/img/markers/platform_new.png',
-			'width' => 32,
-			'height' => 47
+			'iconSize' => array(32, 47),
+			'iconAnchor' => array(16, 47),
+			'popupAnchor' => array(0, -50),
+			'markerId' => 'none'
 		);
 		if(latavelha_is_platform_old()) {
 			$marker['url'] = get_stylesheet_directory_uri() . '/img/markers/platform_old.png';
@@ -127,8 +132,10 @@ function latavelha_markers_icon($marker) {
 	} elseif(get_post_type() == 'accident') {
 		$marker = array(
 			'url' => get_stylesheet_directory_uri() . '/img/markers/accident_' . latavelha_get_accident_type_icon() . '.png',
-			'width' => 32,
-			'height' => 48
+			'iconSize' => array(32, 48),
+			'iconAnchor' => array(16, 48),
+			'popupAnchor' => array(0, -51),
+			'markerId' => 'none'
 		);
 	}
 	return $marker;
@@ -157,10 +164,10 @@ function latavelha_map_legends($legend) {
 	ob_end_clean();
 	return $legend;
 }
-add_filter('mappress_map_legend', 'latavelha_map_legends');
+add_filter('jeo_map_legend', 'latavelha_map_legends');
 
 // lata velha marker class
-add_filter('mappress_marker_class', 'latavelha_markers_class');
+add_filter('jeo_marker_class', 'latavelha_markers_class');
 function latavelha_markers_class($class) {
 	global $post;
 	if(get_post_type() == 'platform') {
@@ -171,7 +178,7 @@ function latavelha_markers_class($class) {
 	return $class;
 }
 
-add_filter('mappress_marker_coordinates', 'latavelha_accident_coordinates');
+add_filter('jeo_marker_coordinates', 'latavelha_accident_coordinates');
 function latavelha_accident_coordinates($coordinates) {
 	global $post;
 	if(get_post_type() == 'accident') {
@@ -210,11 +217,11 @@ add_filter('pre_get_posts', 'latavelha_platform_order');
 function latavelha_use_map_query() {
 	return false;
 }
-add_filter('mappress_use_map_query', 'latavelha_use_map_query');
+add_filter('jeo_use_map_query', 'latavelha_use_map_query');
 
 function latavelha_geocode_type() {
 	return 'latlng';
 }
-add_filter('mappress_geocode_type', 'latavelha_geocode_type');
+add_filter('jeo_geocode_type', 'latavelha_geocode_type');
 
 ?>

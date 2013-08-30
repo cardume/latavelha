@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
             $('html,body').stop().animate({
                 scrollTop: $('#map').offset().top
             }, 400, function() {
-                mappress.map.centerzoom({lat: lat, lon: lon}, zoom, true);
+                jeo.map.centerzoom({lat: lat, lon: lon}, zoom, true);
             });
         }
 
