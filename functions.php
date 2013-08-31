@@ -90,21 +90,15 @@ function latavelha_template_redirect() {
 }
 add_action('template_redirect', 'latavelha_template_redirect');
 
-function latavelha_get_archive_title() {
-	if(is_post_type_archive()) {
-		return post_type_archive_title('', false);
-	} elseif(is_tax()) {
-		return 'Teste';
-	}
-}
+function latavelha_pre_get_posts($query) {
+	global $wp_the_query;
 
-function latavelha_queries($query) {
-	if(is_front_page())
-		$query['post_type'] = 'platform';
+	if(is_front_page() && $query == $wp_the_query)
+		$query->set('post_type', 'platform');
 
 	return $query;
 }
-add_filter('jeo_marker_query', 'latavelha_queries');
+add_filter('pre_get_posts', 'latavelha_pre_get_posts');
 
 function latavelha_marker_extent($extent) {
 	if(is_post_type_archive(array('platform', 'accident')))
@@ -115,7 +109,6 @@ function latavelha_marker_extent($extent) {
 add_filter('jeo_use_marker_extent', 'latavelha_marker_extent');
 
 // lata velha marker icons
-add_filter('jeo_marker_icon', 'latavelha_markers_icon');
 function latavelha_markers_icon($marker) {
 	global $post;
 	if(get_post_type() == 'platform') {
@@ -140,6 +133,7 @@ function latavelha_markers_icon($marker) {
 	}
 	return $marker;
 }
+add_filter('jeo_marker_icon', 'latavelha_markers_icon');
 
 // map legends
 
@@ -160,14 +154,12 @@ function latavelha_map_legends($legend) {
 		<li class="well"><?php _e('Oil wells <strong>without</strong> accident history', 'latavelha'); ?></li>
 	</ul>
 	<?php
-	$legend = ob_get_contents();
-	ob_end_clean();
+	$legend = ob_get_clean();
 	return $legend;
 }
 add_filter('jeo_map_legend', 'latavelha_map_legends');
 
 // lata velha marker class
-add_filter('jeo_marker_class', 'latavelha_markers_class');
 function latavelha_markers_class($class) {
 	global $post;
 	if(get_post_type() == 'platform') {
@@ -177,12 +169,12 @@ function latavelha_markers_class($class) {
 	}
 	return $class;
 }
+add_filter('jeo_marker_class', 'latavelha_markers_class');
 
-add_filter('jeo_marker_coordinates', 'latavelha_accident_coordinates');
 function latavelha_accident_coordinates($coordinates) {
 	global $post;
 	if(get_post_type() == 'accident') {
-		if($coordinates[0] === 0) {
+		if(!$coordinates) {
 			$platform = latavelha_get_accident_platform();
 			if($platform) {
 				$coordinates = latavelha_get_platform_geometry($platform->ID);
@@ -191,6 +183,7 @@ function latavelha_accident_coordinates($coordinates) {
 	}
 	return $coordinates;
 }
+add_filter('jeo_marker_coordinates', 'latavelha_accident_coordinates');
 
 function latavelha_accident_order($query) {
 	$vars = &$query->query_vars;
@@ -223,5 +216,15 @@ function latavelha_geocode_type() {
 	return 'latlng';
 }
 add_filter('jeo_geocode_type', 'latavelha_geocode_type');
+
+function latavelha_transient() {
+	return false;
+}
+add_filter('jeo_markers_enable_transient', 'latavelha_transient');
+
+function latavelha_browser_caching() {
+	return false;
+}
+add_filter('jeo_markers_enable_browser_caching', 'latavelha_browser_caching');
 
 ?>
