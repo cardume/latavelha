@@ -3,7 +3,6 @@
  * Mousehover bubble content
  */
 ?>
-<span class="arrow">&nbsp;</span>
 <?php if(get_post_type() == 'accident') : ?>
 	<h4><?php echo latavelha_get_accident_type_name(); ?></h4>
 	<?php

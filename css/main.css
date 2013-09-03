@@ -18,7 +18,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 #main-nav ul li:hover ul{display:block;}
 #map{width:100%;height:600px;margin:0 0 30px;position:relative;z-index:99;background:url(../img/map-bg.jpg);}#map .container{height:0;position:relative;z-index:999;}#map .container .map-title{position:absolute;font-family:"Black Ops One";font-weight:normal;color:#fffee9;background:#300a07;padding:14px 18px;font-size:26px;line-height:32px;float:left;}#map .container .map-title a{color:#fffee9;text-decoration:none;}
 #map .container h2.map-title{font-size:26px;line-height:32px;}
-#map .map-container{width:100%;height:100%;border-top:10px solid #300a07;position:relative;}#map .map-container .map{width:100%;height:100%;}
+#map .map-container{width:100%;height:100%;border-top:10px solid #300a07;position:relative;}#map .map-container .map{width:100%;height:100%;}#map .map-container .map .leaflet-control-container .leaflet-top{top:0;}
 #map .map-container .zoomout{left:auto;top:20px;right:39px;margin:0;}
 #map .map-container .zoomin{left:auto;top:20px;right:10px;margin:0;}
 #map .map-container .map-fullscreen{left:auto;top:20px;right:80px;margin:0;}
@@ -61,9 +61,9 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 #info-box .download-section ul.download-list li .download-item li .button{padding:5px 7px;width:auto;margin:0;}
 .map-container .map.zoom-5 .story-points.type-platform,.map-container .map.zoom-6 .story-points.type-platform{width:20px !important;height:29px !important;margin-top:-29px !important;margin-left:-15px !important;background:url(../img/markers/platform_new_small.png) !important;}.map-container .map.zoom-5 .story-points.type-platform.old-platform,.map-container .map.zoom-6 .story-points.type-platform.old-platform{background:url(../img/markers/platform_old_small.png) !important;}
 .map-container .map.zoom-5 .story-points.type-platform .popup,.map-container .map.zoom-6 .story-points.type-platform .popup{bottom:39px !important;}
-.map-container .map .popup{background:#300a07 !important;color:#fffee9 !important;}.map-container .map .popup .arrow{border-top:10px solid #300a07 !important;}
-.map-container .map .popup h4{color:#fffee9;font-family:"Black Ops One";font-weight:normal;font-size:18px;line-height:22px;margin-bottom:10px;}
-.map-container .map .popup p{margin:0 0 5px;color:#eeeee9;}.map-container .map .popup p strong{color:#eeeee9;}
+.map-container .map .leaflet-popup-content-wrapper{background:#300a07 !important;color:#fffee9 !important;}.map-container .map .leaflet-popup-content-wrapper .arrow{border-top:10px solid #300a07 !important;}
+.map-container .map .leaflet-popup-content-wrapper h4{color:#fffee9;font-family:"Black Ops One";font-weight:normal;font-size:18px;line-height:22px;margin:0 0 10px;}
+.map-container .map .leaflet-popup-content-wrapper p{margin:0;color:#eeeee9;}.map-container .map .leaflet-popup-content-wrapper p strong{color:#eeeee9;}
 .card.platform article{padding-top:20px;margin-bottom:20px;background:#ffffff url(../img/rusty-bg.png);-webkit-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3);-khtml-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3);-o-box-shadow:0 2px 4px rgba(0, 0, 0, 0.3);box-shadow:0 2px 4px rgba(0, 0, 0, 0.3);-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}.card.platform article header{padding:0 20px;}
 .card.platform article section{padding:0 20px;}
 .card.platform article:hover{-webkit-box-shadow:0 3px 5px rgba(0, 0, 0, 0.3);-khtml-box-shadow:0 3px 5px rgba(0, 0, 0, 0.3);-moz-box-shadow:0 3px 5px rgba(0, 0, 0, 0.3);-o-box-shadow:0 3px 5px rgba(0, 0, 0, 0.3);box-shadow:0 3px 5px rgba(0, 0, 0, 0.3);}

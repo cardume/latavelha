@@ -113,18 +113,18 @@ function latavelha_markers_icon($marker) {
 	global $post;
 	if(get_post_type() == 'platform') {
 		$marker = array(
-			'url' => get_stylesheet_directory_uri() . '/img/markers/platform_new.png',
+			'iconUrl' => get_stylesheet_directory_uri() . '/img/markers/platform_new.png',
 			'iconSize' => array(32, 47),
 			'iconAnchor' => array(16, 47),
 			'popupAnchor' => array(0, -50),
 			'markerId' => 'none'
 		);
 		if(latavelha_is_platform_old()) {
-			$marker['url'] = get_stylesheet_directory_uri() . '/img/markers/platform_old.png';
+			$marker['iconUrl'] = get_stylesheet_directory_uri() . '/img/markers/platform_old.png';
 		}
 	} elseif(get_post_type() == 'accident') {
 		$marker = array(
-			'url' => get_stylesheet_directory_uri() . '/img/markers/accident_' . latavelha_get_accident_type_icon() . '.png',
+			'iconUrl' => get_stylesheet_directory_uri() . '/img/markers/accident_' . latavelha_get_accident_type_icon() . '.png',
 			'iconSize' => array(32, 48),
 			'iconAnchor' => array(16, 48),
 			'popupAnchor' => array(0, -51),
@@ -133,7 +133,7 @@ function latavelha_markers_icon($marker) {
 	}
 	return $marker;
 }
-add_filter('jeo_marker_icon', 'latavelha_markers_icon');
+add_filter('jeo_marker_icon', 'latavelha_markers_icon', 100);
 
 // map legends
 
@@ -210,12 +210,12 @@ add_filter('pre_get_posts', 'latavelha_platform_order');
 function latavelha_use_map_query() {
 	return false;
 }
-add_filter('jeo_use_map_query', 'latavelha_use_map_query');
+//add_filter('jeo_use_map_query', 'latavelha_use_map_query');
 
 function latavelha_geocode_type() {
 	return 'latlng';
 }
-add_filter('jeo_geocode_type', 'latavelha_geocode_type');
+//add_filter('jeo_geocode_type', 'latavelha_geocode_type');
 
 function latavelha_transient() {
 	return false;
@@ -226,5 +226,15 @@ function latavelha_browser_caching() {
 	return false;
 }
 add_filter('jeo_markers_enable_browser_caching', 'latavelha_browser_caching');
+
+function latavelha_flush_rewrite() {
+	global $pagenow;
+	if(is_admin() && $_REQUEST['activated'] && $pagenow == 'themes.php') {
+		global $wp_rewrite;
+		$wp_rewrite->init();
+		$wp_rewrite->flush_rules();
+	}
+}
+add_action('init', 'latavelha_flush_rewrite');
 
 ?>

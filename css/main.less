@@ -363,6 +363,9 @@ header#masthead {
 		.map {
 			width: 100%;
 			height: 100%;
+			.leaflet-control-container .leaflet-top {
+				top: 0;
+			}
 		}
 		.zoomout {
 			left: auto;
@@ -763,22 +766,19 @@ header#masthead {
 				}
 			}
 		}
-		.popup {
+		.leaflet-popup-content-wrapper {
 			background: #300a07 !important;
 			color: #fffee9 !important;
-			.arrow {
-				border-top: 10px solid #300a07 !important;
-			}
 			h4 {
 				color: #fffee9;
 				font-family: "Black Ops One";
 				font-weight: normal;
 				font-size: 18px;
 				line-height: 22px;
-				margin-bottom: 10px;
+				margin: 0 0 10px;
 			}
 			p {
-				margin: 0 0 5px;
+				margin: 0;
 				color: #eeeee9;
 				strong {
 					color: #eeeee9;
